@@ -2,12 +2,22 @@ import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import { useStudy } from "../app/studyState";
 
-const EXAM_DAY = new Date("2026-06-29T00:00:00+08:00");
+const EXAM_DAY_UTC = Date.UTC(2026, 5, 29);
+const SHANGHAI_DATE = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Shanghai",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
 
 export function getExamCountdownLabel(now = new Date()) {
-  const currentDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-  const targetDay = new Date(EXAM_DAY.getFullYear(), EXAM_DAY.getMonth(), EXAM_DAY.getDate()).getTime();
-  const days = Math.round((targetDay - currentDay) / 86_400_000);
+  const parts = Object.fromEntries(
+    SHANGHAI_DATE.formatToParts(now)
+      .filter((part) => part.type !== "literal")
+      .map((part) => [part.type, Number(part.value)]),
+  );
+  const currentDayUtc = Date.UTC(parts.year, parts.month - 1, parts.day);
+  const days = Math.round((EXAM_DAY_UTC - currentDayUtc) / 86_400_000);
   if (days === 0) return "今天考试";
   if (days < 0) return "考试已结束";
   return `距考试 ${days} 天`;
