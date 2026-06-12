@@ -58,6 +58,11 @@ alter table public.attempts enable row level security;
 alter table public.daily_sessions enable row level security;
 alter table public.mistake_items enable row level security;
 
+revoke all on table public.profiles, public.topic_mastery, public.attempts,
+  public.daily_sessions, public.mistake_items from anon, authenticated;
+grant select, insert, update, delete on table public.profiles, public.topic_mastery,
+  public.attempts, public.daily_sessions, public.mistake_items to authenticated;
+
 create policy "own profiles" on public.profiles for all to authenticated
 using ((select auth.uid()) = user_id)
 with check ((select auth.uid()) = user_id);

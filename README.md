@@ -10,7 +10,7 @@
 - 知识地图：设计运动、年代、人物、代表作和易混对比。
 - 客观题自动判定；主观题按得分点自评。
 - 浏览器本地保存，刷新和短暂离线不丢进度。
-- Supabase 邮箱六位验证码登录和跨设备同步。
+- Supabase 邮箱免密码登录链接和跨设备同步。
 - 桌面左侧导航与手机底部导航。
 - GitHub Actions 自动发布到 GitHub Pages。
 
@@ -42,8 +42,8 @@ npx playwright install chromium
 ## Supabase 配置
 
 1. 在 Supabase 新建项目。
-2. 在 SQL Editor 执行 `supabase/migrations/202606110001_study_progress.sql`。
-3. 在 Authentication 的邮件模板中使用 `{{ .Token }}`，确保邮件包含六位验证码。
+2. 使用 Supabase CLI 执行 `supabase/migrations` 中的迁移。
+3. 免费套餐使用 Supabase 默认邮件登录链接；点击邮件链接后自动登录。
 4. 在 Authentication URL Configuration 中添加：
    - 本地地址，例如 `http://localhost:5173`
    - GitHub Pages 地址，例如 `https://<owner>.github.io/<repo>/`
