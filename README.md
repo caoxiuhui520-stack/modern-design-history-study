@@ -2,6 +2,8 @@
 
 面向 2026 年 6 月 29 日期末考试的响应式复习网页。每天按 30 分钟安排快速回忆、混合训练和错题回炉，覆盖选择题、填空题、名词解释、简答题与论述题。
 
+在线使用：<https://caoxiuhui520-stack.github.io/modern-design-history-study/>
+
 ## 功能
 
 - 25 个课件知识主题、50 张抽认卡、70+ 道五类题目。
@@ -73,4 +75,3 @@ VITE_SUPABASE_PUBLISHABLE_KEY=<publishable-or-anon-key>
 ## 内容来源
 
 复习内容依据用户提供的 30 页《世界现代设计史》考试课件整理。题库随代码发布，个人答题记录不进入仓库。
-
